@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <div id="app">{{ name }}
+
+    <Helo></Helo>
+    <world></world>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    // 创建Vue实例
+    const app = Vue.createApp({
+      data() {
+        return {
+          name: "WanLum"
+        }
+      },
+      components: {
+        world: {
+          template: "<em>这是什么东西呢</em>",
+          data(){
+            return {
+              message: "你好"
+            }
+          }
+        }
+      }
+    });
+
+    app.component("Helo", {
+      template: `<h1>我是什么</h1>`,
+      data() {
+        // ...省略代码
+        return {
+
+        }
+      },
+      methods: {
+        // ...省略代码
+      },
+      computed: {
+        // ...省略代码
+      },
+      // ...以及其他选项、各种 lifecycle等
+    })
+
+    // 把Vue实例挂载在id为app的div上
+    app.mount('#app');
+  </script>
+</body>
+
+</html>

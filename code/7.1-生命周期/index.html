@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button v-if="showBtn" v-on:click="handleClick">Click Me</button>
+    <coma v-if="name =='张三'"></coma>
+    <p>{{ name }}</p>
+  </div>
+
+  <script>
+    const vm = Vue.createApp({
+      // data 对象就是要渲染到页面上的数据
+      data() {
+        return {
+          showBtn: 'true',
+          name: '张三'
+        }
+      },
+      methods: {
+        handleClick() {
+          // console.log('你终于点中了我...');
+          this.name = "李四"
+        }
+      },
+      beforeCreate() {
+        console.log("执行了 beforeCreate 函数")
+      },
+      created() {
+        console.log("执行了 created 函数")
+      },
+
+      beforeMount() {
+        console.log("执行了 beforeMount 函数")
+      },
+      mounted() {
+        console.log("执行了 mounted 函数")
+      },
+
+      beforeUpdate() {
+        console.log("执行了 beforeUpdate 函数")
+      },
+      updated() {
+        console.log("执行了 updated 函数")
+      },
+
+
+    });
+
+    vm.component("coma", {
+      template: `<p>我是组件</p>`,
+      beforeUnmount() {
+        console.log("执行了 beforeUnmount 函数")
+      },
+      unmounted() {
+        console.log("执行了 unmounted 函数")
+      }
+    })
+    // 通过vm(view model)把 username渲染到id为app的元素中
+    vm.mount('#app');
+  </script>
+</body>
+
+</html>
